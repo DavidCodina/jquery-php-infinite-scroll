@@ -27,8 +27,7 @@ function unix_timestamp_to_date(unix_timestamp){
 
 
 function load_data(number_of_items_to_load) {
-  const spinner         = document.getElementById("spinner");
-  spinner.style.display = "inline-block";
+
 
   //////////////////////////////////////////////////////////////////////////////
   //
@@ -41,8 +40,14 @@ function load_data(number_of_items_to_load) {
 
 
   if (! prevent_ajax_call) {
-    const POST_DATA   = { number_of_items_to_load, offset };
     prevent_ajax_call = true;
+
+
+    const spinner         = document.getElementById("spinner");
+    spinner.style.display = "inline-block";
+
+    
+    const POST_DATA       = { number_of_items_to_load, offset };
 
 
     $.ajax({
