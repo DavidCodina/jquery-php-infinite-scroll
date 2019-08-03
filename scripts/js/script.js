@@ -3,7 +3,7 @@
 ============================================================================= */
 
 
-https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
+//https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
 function unix_timestamp_to_date(unix_timestamp){
   const x      = new Date(unix_timestamp * 1000);
   const days   = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -27,7 +27,8 @@ function unix_timestamp_to_date(unix_timestamp){
 
 
 function load_data(number_of_items_to_load) {
-  //console.log("load_data() executed.");
+  const spinner         = document.getElementById("spinner");
+  spinner.style.display = "inline-block";
 
   //////////////////////////////////////////////////////////////////////////////
   //
@@ -68,10 +69,12 @@ function load_data(number_of_items_to_load) {
           prevent_ajax_call = true;
           console.log("data.rows.length == 0. There are no more items to load from the database.");
         }
-      } //End of success:
-    }); //End of: $.ajax({ ... })
-  }//End of: if (! prevent_ajax_call) { ... }
-}//End of: function load_data(number_of_items_to_load){ ... }
+
+        spinner.style.display = "none";
+      }
+    });
+  }
+}
 
 
 /* =============================================================================
@@ -90,7 +93,7 @@ let prevent_ajax_call       = false;
 
 
 //Initially load 5 items.
-$(function() { load_data(5);  });
+$(function() { load_data(5); });
 
 
 //When the user scrolls, load additional data/rows/blogs
